@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <title>面试评价表</title>
+  <link rel="stylesheet" href="../css/mui.min.css">
+  <script src="../js/datePicker.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<style>
+  .main {
+    width: 96%;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 1rem;
+  }
+
+  .name_group {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 0 10px;
+    margin-bottom: .2rem;
+  }
+
+  .name {
+    width: 100%;
+    line-height: .8rem;
+    margin-bottom: .2rem;
+  }
+
+  input[type=text] {
+    outline: none;
+    padding: .2rem;
+    font-size: 12px;
+  }
+
+  .names {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: .09rem 10px;
+    border: 1px solid #dde5ed;
+    height: 45px;
+    width: 90%;
+  }
+
+  .type_name {
+    width: 2.2rem !important;
+    padding: .2rem .2rem .2rem 0 !important;
+  }
+
+  .mui-input-row.mui-input-range {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: .2rem;
+  }
+
+  .range-show {
+    height: 100%;
+    margin-left: .2rem;
+  }
+
+  .mui-input-range {
+    margin-bottom: .2rem;
+  }
+
+  .mui-input-range .mui-tooltip {
+    display: none;
+  }
+
+  .sz-abilty {
+    color: #1d7db1;
+  }
+
+  .sz-abilty-ele, .sz-dd, .textarea, .end {
+    padding-left: .2rem;
+  }
+
+  .range-show-num {
+    padding-left: .3rem;
+  }
+
+  .mui-input-range label ~ input[type='range'] {
+    width: 55%;
+    height: 4px;
+  }
+
+  /*修改滑块颜色*/
+  .mui-input-range input[type='range']::-webkit-slider-thumb {
+    width: 14px;
+    height: 14px;
+    border-color: #0062cc;
+    border-radius: 50%;
+    background-color: #0062cc;
+  /修改这里的颜色就可以了！/ background-clip: padding-box;
+    -webkit-appearance: none !important;
+  }
+
+  #textarea, #textarea2, #textarea3 {
+    font-size: 12px;
+    padding: .2rem;
+    overflow: scroll;
+  }
+
+  .end-ele {
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  input[type=radio]:after {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 14px;
+    font-size: 16px;
+    color: #fff;
+    border: 2px solid #ddd;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+
+  input[type=radio]:checked:after {
+    content: "L";
+    transform: matrix(-0.766044, -0.642788, -0.642788, 0.766044, 0, 0);
+    -webkit-transform: matrix(-0.766044, -0.642788, -0.642788, 0.766044, 0, 0);
+    border-color: #6cc5f1;
+    background-color: #6cc5f1;
+  }
+
+  .xwname {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: .2rem 0;
+  }
+
+  .xwnames {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .label input[type=radio]:checked:after {
+    margin-right: .4rem;
+  }
+
+  .xwname-title {
+    width: 2rem;
+    line-height: 38px;
+  }
+
+  .label {
+    width: 100%;
+  }
+
+  input[type=radio] {
+    display: inline-block;
+    vertical-align: middle;
+    width: 0px;
+    height: 0px;
+    margin-top: -22px;
+    margin-right: 27px;
+    g-webkit-appearance: none;
+    background-color: transparent;
+    border: 0;
+    outline: 0 !important;
+    line-height: 20px;
+    color: #d8d8d8;
+  }
+
+  #box {
+    width: 240px;
+    height: 160px;
+    background-color: #cccccc;
+  }
+
+  canvas {
+    height: 160px !important;
+  }
+
+  span {
+    color: #ffffff;
+    display: block;
+    width: 100px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;
+    background: dodgerblue;
+    margin-bottom: 10px;
+  }
+
+  #image {
+    width: 5rem;
+    height: 4rem;
+    margin: 0 auto;
+  }
+
+  .labels {
+    width: 1rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: .2rem;
+  }
+
+  .labels:nth-child(2) {
+    margin-left: -.8rem;
+    margin-right: .2rem;
+  }
+
+  .mui-content {
+    padding: 0 10px;
+  }
+
+  .name-sex {
+    width: 2rem;
+  }
+</style>
+
+
+<body>
+<div class="main">
+  <div class="name_group">
+    <div class="name">候选人姓名：</div>
+    <input type="text" value="aa" class="names" id="name">
+  </div>
+  <div class="name_group">
+    <div class="name name-sex">性别：</div>
+    <label class="label labels">
+      <input type="radio" value="男" name="sex">男
+    </label>
+    <label class="label labels">
+      <input type="radio" value="女" name="sex">女
+    </label>
+
+  </div>
+  <div class="name_group">
+    <div class="name">学历：</div>
+    <input type="text" value="本科" class="names" id="xueli">
+  </div>
+  <div class="name_group">
+    <div class="name">专业：</div>
+    <input type="text" value="自动化" class="names" id="zhuanye">
+  </div>
+<!--  <div class="name_group">-->
+<!--    <div class="name">小微名称：</div>-->
+<!--    <input type="text"  class="names" id="XW">-->
+<!--  </div>-->
+<!--  <div class="name_group">-->
+<!--    <div class="name">岗位名称：</div>-->
+<!--    <input type="text"  class="names" id="gangwei">-->
+<!--  </div>-->
+  <div class="name_group">
+    <div class="name">面试日期：</div>
+    <input type="text" class="names" placeholder="面试日期" id="msDate" readonly="readonly">
+  </div>
+  <div class="name_group">
+    <div class="name">评价原则：</div>
+    <p>1、根据项目用人要求，筛选并推荐符合入围标准的人员给各区域/项目有用人需求的小微；</p>
+    <p>2、用人小微根据岗位要求对候选人的驱动力、胜任力、组织匹配性和道德底线评人评单，均评价合格，可进入经营体需求岗位试用；</p>
+  </div>
+  <div class="mui-content">
+    <div class="sz-abilty">一、素质能力评价：</div>
+    <div class="sz-abilty-ele">1、创客驱动力（态度&意愿）</div>
+    <div class="mui-input-row mui-input-range">
+      <label class="type_name">一票到底</label>
+      <input type="range" min="0" max="10" id="range1" value="0">
+      <div class="range-show">差</div>
+      <div class="range-show-num">0</div>
+    </div>
+    <div class="mui-input-row mui-input-range">
+      <label class="type_name">激情(积极)</label>
+      <input type="range" min="0" max="5" id="range2" value="0">
+      <div class="range-show">差</div>
+      <div class="range-show-num">0</div>
+    </div>
+    <div class="mui-input-row mui-input-range">
+      <label class="type_name">自我挑战</label>
+      <input type="range" min="0" max="5" id="range3" value="0">
+      <div class="range-show">差</div>
+      <div class="range-show-num">0</div>
+    </div>
+    <div class="mui-input-row mui-input-range">
+      <label class="type_name">开放学习</label>
+      <input type="range" min="0" max="10" id="range4" value="0">
+      <div class="range-show">差</div>
+      <div class="range-show-num">0</div>
+    </div>
+    <div class="sz-abilty-ele">2、创客胜任力（能力）</div>
+    <div class="mui-input-row mui-input-range">
+      <label class="type_name">专业技能</label>
+      <input type="range" min="0" max="30" id="range5" value="0">
+      <div class="range-show">差</div>
+      <div class="range-show-num">0</div>
+    </div>
+    <div class="mui-input-row mui-input-range">
+      <label class="type_name">创新优化</label>
+      <input type="range" min="0" max="10" id="range6" value="0">
+      <div class="range-show">差</div>
+      <div class="range-show-num">0</div>
+    </div>
+    <div class="mui-input-row mui-input-range">
+      <label class="type_name">团队协作</label>
+      <input type="range" min="0" max="10" id="range7" value="0">
+      <div class="range-show">差</div>
+      <div class="range-show-num">0</div>
+    </div>
+    <div class="mui-input-row mui-input-range">
+      <label class="type_name">资源整合</label>
+      <input type="range" min="0" max="10" id="range8" value="0">
+      <div class="range-show">差</div>
+      <div class="range-show-num">0</div>
+    </div>
+    <div class="sz-abilty-ele">3、组织匹配性（文化）</div>
+    <div class="mui-input-row mui-input-range">
+      <label class="type_name"></label>
+      <input type="range" min="0" max="10" id="range9" value="0">
+      <div class="range-show">差</div>
+      <div class="range-show-num">0</div>
+    </div>
+    <!-- 合计不可手动调整，根据前面动态判断-->
+    <div class="sz-abilty-ele">合计（高于75分以上及格）</div>
+    <div class="mui-input-row mui-input-range">
+      <label class="type_name"></label>
+      <input type="range" min="0" max="100" id="range10" value="0" disabled>
+      <div class="range-show">差</div>
+      <div class="range-show-num">0</div>
+    </div>
+    <div class="sz-abilty-ele">道德底线</div>
+    <div class="sz-dd">如背景调查资料中候选人有违背道德底线的行为/经历，一票否决</div>
+  </div>
+  <div class="mui-content">
+    <div class="sz-abilty">二、优势及不足评价：</div>
+    <div class="sz-abilty-ele">1、优势：</div>
+    <div class="textarea">
+      <textarea name="" id="textarea" cols="3" rows="3"></textarea>
+    </div>
+    <div class="sz-abilty-ele">2、不足：</div>
+    <div class="textarea">
+      <textarea name="" id="textarea2" cols="3" rows="3"></textarea>
+    </div>
+
+  </div>
+  <div class="mui-content">
+    <div class="sz-abilty">三、录用结论：</div>
+    <div class="sz-abilty-ele">1、常用建议：</div>
+    <div class="textarea">
+      <textarea name="" id="textarea3" cols="3" rows="3"></textarea>
+    </div>
+    <div class="sz-abilty-ele">2、结论</div>
+    <div class="end">
+      <div class="end-ele last">
+        <label class="label"><input type="radio" value="1" name="end">录用</label>
+        <div class="xwname">
+          <div class="xwname-title">小微名称：</div>
+          <input type="text" disabled class="deny xwName">
+        </div>
+        <div class="xwname">
+          <div class="xwname-title">小微岗位：</div>
+          <input type="text" disabled class="deny xwJob">
+        </div>
+      </div>
+      <div class="end-ele last">
+        <label class="label"><input type="radio" value="2" name="end">保留</label>
+        <div class="xwname">
+          <div class="xwname-title">小微名称：</div>
+          <input type="text" disabled class="deny xwName">
+        </div>
+        <div class="xwname">
+          <div class="xwname-title">小微岗位：</div>
+          <input type="text" disabled class="deny xwJob">
+        </div>
+      </div>
+      <div class="end-ele last">
+        <label class="label"><input type="radio" value="3" name="end">转介</label>
+        <div class="xwname">
+          <div class="xwname-title">转介方向：</div>
+          <input type="text" disabled class="deny" id="zj">
+        </div>
+      </div>
+      <div class="end-ele last">
+        <label class="label"><input type="radio" value="4" name="end">不录用</label>
+      </div>
+      <div class="end-ele">
+        <div class="xwname">
+          <div class="xwname-title">评价人：</div>
+          <div style="padding-top: 16px">
+            <div id="box"></div>
+          </div>
+
+        </div>
+        <div class="xwname xwnames">
+          <span>确认</span>
+          <span>重置</span>
+        </div>
+        <img src="" alt="" id="image" style="display: none">
+
+      </div>
+      <div class="end-ele" style="display: none">
+        <div class="xwname">
+          <div class="xwname-title">评价时间：</div>
+          <input type="text" placeholder="请选择评价时间" id="pingjiaTime" readonly="readonly">
+        </div>
+
+      </div>
+      <div class="end-ele" style="display: flex;justify-content: center">
+        <input type="button" value="提交" id="submit">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="../js/rem.js"></script>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/flash.js"></script>
+<script src="../js/mui.min.js"></script>
+<link rel="stylesheet" href="../css/mui.picker.css">
+<link rel="stylesheet" href="../css/mui.poppicker.css">
+<link rel="stylesheet" href="../css/mui.picker.all.css">
+<link rel="stylesheet" href="../css/mui.picker.min.css">
+<script src="../js/mui.picker.js"></script>
+<script src="../js/mui.poppicker.js"></script>
+<script src="../js/mui.picker.min.js"></script>
+<script src="../js/url.js"></script>
+<script>
+  //测试 HR66        正式 HRHIG
+  var List = [];
+  var id = '';
+  var ids='';//查询评价信息
+  var request = utils.formatUrl();
+  var interId = request['interId']
+  var interName = request['interName'];
+  var idCard=request['idcard']
+  $(function () {
+    getInfo(interId, interName,idCard);
+    // 一票到底 change
+    $("#range1").change(function () {
+      // 满分10  0-4 差  5-7 一般  8-9 良好  10 卓越
+      var index = Number($(this).val());
+      var num2 = Number($("#range2").val()); // 激情（积极）
+      var num3 = Number($("#range3").val());// 自我挑战
+      var num4 = Number($("#range4").val());// 开发学习
+      var num5 = Number($("#range5").val());// 专业技能
+      var num6 = Number($("#range6").val());// 创新优化
+      var num7 = Number($("#range7").val());// 团队协作
+      var num8 = Number($("#range8").val());// 资源整合
+      var num9 = Number($("#range9").val());// 组织匹配性（文化）
+      $(this).siblings(':last-child').text(index);
+      if (Number(index) <= 4 && Number(index) >= 0) {
+        $(this).siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 7 && Number(index) >= 5) {
+        $(this).siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 9 && Number(index) >= 8) {
+        $(this).siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $(this).siblings(':nth-last-child(2)').text('卓越');
+      }
+      var numArr = [index, num2, num3, num4, num5, num6, num7, num8, num9];
+      var sum = numArr.reduce((x, y) => x + y)
+      $('#range10').val(sum);
+      $('#range10').siblings(':last-child').text(sum);
+      if (Number(sum) <= 59 && Number(sum) >= 0) {
+        $('#range10').siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 75 && Number(index) >= 60) {
+        $('#range10').siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 76 && Number(index) >= 90) {
+        $('#range10').siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $('#range10').siblings(':nth-last-child(2)').text('卓越');
+      }
+    });
+    // 激情（积极） change
+    $("#range2").change(function () {
+      // 满分5  0-2 差  3 一般  4 良好  5 卓越
+      var index = Number($(this).val());
+      var num1 = Number($("#range1").val()); // 一票到底
+      var num3 = Number($("#range3").val());// 自我挑战
+      var num4 = Number($("#range4").val());// 开发学习
+      var num5 = Number($("#range5").val());// 专业技能
+      var num6 = Number($("#range6").val());// 创新优化
+      var num7 = Number($("#range7").val());// 团队协作
+      var num8 = Number($("#range8").val());// 资源整合
+      var num9 = Number($("#range9").val());// 组织匹配性（文化）
+      $(this).siblings(':last-child').text(index);
+      if (Number(index) <= 2 && Number(index) >= 0) {
+        $(this).siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) === 3) {
+        $(this).siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) === 4) {
+        $(this).siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $(this).siblings(':nth-last-child(2)').text('卓越');
+      }
+      var numArr = [index, num1, num3, num4, num5, num6, num7, num8, num9];
+      var sum = numArr.reduce((x, y) => x + y)
+      $('#range10').val(sum);
+      $('#range10').siblings(':last-child').text(sum);
+      if (Number(sum) <= 59 && Number(sum) >= 0) {
+        $('#range10').siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 75 && Number(index) >= 60) {
+        $('#range10').siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 76 && Number(index) >= 90) {
+        $('#range10').siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $('#range10').siblings(':nth-last-child(2)').text('卓越');
+      }
+    });
+    // 自我挑战 change
+    $("#range3").change(function () {
+      // 满分5  0-2 差  3 一般  4 良好  5 卓越
+      var index = Number($(this).val());
+      var num1 = Number($("#range1").val()); // 一票到底
+      var num2 = Number($("#range2").val()); // 激情（积极）
+      var num4 = Number($("#range4").val());// 开发学习
+      var num5 = Number($("#range5").val());// 专业技能
+      var num6 = Number($("#range6").val());// 创新优化
+      var num7 = Number($("#range7").val());// 团队协作
+      var num8 = Number($("#range8").val());// 资源整合
+      var num9 = Number($("#range9").val());// 组织匹配性（文化）
+      $(this).siblings(':last-child').text(index);
+      if (Number(index) <= 2 && Number(index) >= 0) {
+        $(this).siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) === 3) {
+        $(this).siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) === 4) {
+        $(this).siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $(this).siblings(':nth-last-child(2)').text('卓越');
+      }
+      var numArr = [index, num2, num1, num4, num5, num6, num7, num8, num9];
+      var sum = numArr.reduce((x, y) => x + y)
+      $('#range10').val(sum);
+      $('#range10').siblings(':last-child').text(sum);
+      if (Number(sum) <= 59 && Number(sum) >= 0) {
+        $('#range10').siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 75 && Number(index) >= 60) {
+        $('#range10').siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 76 && Number(index) >= 90) {
+        $('#range10').siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $('#range10').siblings(':nth-last-child(2)').text('卓越');
+      }
+    });
+    // 开发学习 change
+    $("#range4").change(function () {
+      // 满分10  0-4 差  5-7 一般  8-9 良好  10 卓越
+      var index = Number($(this).val());
+      var num1 = Number($("#range1").val()); // 一票到底
+      var num2 = Number($("#range2").val()); // 激情（积极）
+      var num3 = Number($("#range3").val());// 自我挑战
+      var num5 = Number($("#range5").val());// 专业技能
+      var num6 = Number($("#range6").val());// 创新优化
+      var num7 = Number($("#range7").val());// 团队协作
+      var num8 = Number($("#range8").val());// 资源整合
+      var num9 = Number($("#range9").val());// 组织匹配性（文化）
+      $(this).siblings(':last-child').text(index);
+      if (Number(index) <= 4 && Number(index) >= 0) {
+        $(this).siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 7 && Number(index) >= 5) {
+        $(this).siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 9 && Number(index) >= 8) {
+        $(this).siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $(this).siblings(':nth-last-child(2)').text('卓越');
+      }
+      var numArr = [index, num2, num3, num1, num5, num6, num7, num8, num9];
+      var sum = numArr.reduce((x, y) => x + y)
+      $('#range10').val(sum);
+      $('#range10').siblings(':last-child').text(sum);
+      if (Number(sum) <= 59 && Number(sum) >= 0) {
+        $('#range10').siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 75 && Number(index) >= 60) {
+        $('#range10').siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 76 && Number(index) >= 90) {
+        $('#range10').siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $('#range10').siblings(':nth-last-child(2)').text('卓越');
+      }
+    });
+    // 专业技能 change
+    $("#range5").change(function () {
+      // 满分30  0-9 差  10-20 一般  21-29 良好  30 卓越
+      var index = Number($(this).val());
+      var num1 = Number($("#range1").val()); // 一票到底
+      var num2 = Number($("#range2").val()); // 激情（积极）
+      var num3 = Number($("#range3").val());// 自我挑战
+      var num4 = Number($("#range4").val());// 开发学习
+      var num6 = Number($("#range6").val());// 创新优化
+      var num7 = Number($("#range7").val());// 团队协作
+      var num8 = Number($("#range8").val());// 资源整合
+      var num9 = Number($("#range9").val());// 组织匹配性（文化）
+      $(this).siblings(':last-child').text(index);
+      if (Number(index) <= 9 && Number(index) >= 0) {
+        $(this).siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 20 && Number(index) >= 10) {
+        $(this).siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 29 && Number(index) >= 21) {
+        $(this).siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $(this).siblings(':nth-last-child(2)').text('卓越');
+      }
+      var numArr = [index, num2, num3, num4, num1, num6, num7, num8, num9];
+      var sum = numArr.reduce((x, y) => x + y)
+      $('#range10').val(sum);
+      $('#range10').siblings(':last-child').text(sum);
+      if (Number(sum) <= 59 && Number(sum) >= 0) {
+        $('#range10').siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 75 && Number(index) >= 60) {
+        $('#range10').siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 76 && Number(index) >= 90) {
+        $('#range10').siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $('#range10').siblings(':nth-last-child(2)').text('卓越');
+      }
+    });
+    // 创新优化 change
+    $("#range6").change(function () {
+      // 满分10  0-4 差  5-7 一般  8-9 良好  10 卓越
+      var index = Number($(this).val());
+      var num1 = Number($("#range1").val()); // 一票到底
+      var num2 = Number($("#range2").val()); // 激情（积极）
+      var num3 = Number($("#range3").val());// 自我挑战
+      var num4 = Number($("#range4").val());// 开发学习
+      var num5 = Number($("#range5").val());// 专业技能
+      var num7 = Number($("#range7").val());// 团队协作
+      var num8 = Number($("#range8").val());// 资源整合
+      var num9 = Number($("#range9").val());// 组织匹配性（文化）
+      $(this).siblings(':last-child').text(index);
+      if (Number(index) <= 4 && Number(index) >= 0) {
+        $(this).siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 7 && Number(index) >= 5) {
+        $(this).siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 9 && Number(index) >= 8) {
+        $(this).siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $(this).siblings(':nth-last-child(2)').text('卓越');
+      }
+      var numArr = [index, num2, num3, num4, num5, num1, num7, num8, num9];
+      var sum = numArr.reduce((x, y) => x + y)
+      $('#range10').val(sum);
+      $('#range10').siblings(':last-child').text(sum);
+      if (Number(sum) <= 59 && Number(sum) >= 0) {
+        $('#range10').siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 75 && Number(index) >= 60) {
+        $('#range10').siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 76 && Number(index) >= 90) {
+        $('#range10').siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $('#range10').siblings(':nth-last-child(2)').text('卓越');
+      }
+    });
+    // 团队协作 change
+    $("#range7").change(function () {
+      // 满分10  0-4 差  5-7 一般  8-9 良好  10 卓越
+      var index = Number($(this).val());
+      var num1 = Number($("#range1").val()); // 一票到底
+      var num2 = Number($("#range2").val()); // 激情（积极）
+      var num3 = Number($("#range3").val());// 自我挑战
+      var num4 = Number($("#range4").val());// 开发学习
+      var num5 = Number($("#range5").val());// 专业技能
+      var num6 = Number($("#range6").val());// 创新优化
+      var num8 = Number($("#range8").val());// 资源整合
+      var num9 = Number($("#range9").val());// 组织匹配性（文化）
+      $(this).siblings(':last-child').text(index);
+      if (Number(index) <= 4 && Number(index) >= 0) {
+        $(this).siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 7 && Number(index) >= 5) {
+        $(this).siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 9 && Number(index) >= 8) {
+        $(this).siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $(this).siblings(':nth-last-child(2)').text('卓越');
+      }
+      var numArr = [index, num2, num3, num4, num5, num6, num1, num8, num9];
+      var sum = numArr.reduce((x, y) => x + y)
+      $('#range10').val(sum);
+      $('#range10').siblings(':last-child').text(sum);
+      if (Number(sum) <= 59 && Number(sum) >= 0) {
+        $('#range10').siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 75 && Number(index) >= 60) {
+        $('#range10').siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 76 && Number(index) >= 90) {
+        $('#range10').siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $('#range10').siblings(':nth-last-child(2)').text('卓越');
+      }
+    });
+    // 资源整合 change
+    $("#range8").change(function () {
+      // 满分10  0-4 差  5-7 一般  8-9 良好  10 卓越
+      var index = Number($(this).val());
+      var num1 = Number($("#range1").val()); // 一票到底
+      var num2 = Number($("#range2").val()); // 激情（积极）
+      var num3 = Number($("#range3").val());// 自我挑战
+      var num4 = Number($("#range4").val());// 开发学习
+      var num5 = Number($("#range5").val());// 专业技能
+      var num6 = Number($("#range6").val());// 创新优化
+      var num7 = Number($("#range7").val());// 团队协作
+      var num9 = Number($("#range9").val());// 组织匹配性（文化）
+      $(this).siblings(':last-child').text(index);
+      if (Number(index) <= 4 && Number(index) >= 0) {
+        $(this).siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 7 && Number(index) >= 5) {
+        $(this).siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 9 && Number(index) >= 8) {
+        $(this).siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $(this).siblings(':nth-last-child(2)').text('卓越');
+      }
+      var numArr = [index, num2, num3, num4, num5, num6, num7, num1, num9];
+      var sum = numArr.reduce((x, y) => x + y)
+      $('#range10').val(sum);
+      $('#range10').siblings(':last-child').text(sum);
+      if (Number(sum) <= 59 && Number(sum) >= 0) {
+        $('#range10').siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 75 && Number(index) >= 60) {
+        $('#range10').siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 76 && Number(index) >= 90) {
+        $('#range10').siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $('#range10').siblings(':nth-last-child(2)').text('卓越');
+      }
+    });
+    // 组织匹配性 change
+    $("#range9").change(function () {
+      // 满分10  0-4 差  5-7 一般  8-9 良好  10 卓越
+      var index = Number($(this).val());
+      var num1 = Number($("#range1").val()); // 一票到底
+      var num2 = Number($("#range2").val()); // 激情（积极）
+      var num3 = Number($("#range3").val());// 自我挑战
+      var num4 = Number($("#range4").val());// 开发学习
+      var num5 = Number($("#range5").val());// 专业技能
+      var num6 = Number($("#range6").val());// 创新优化
+      var num7 = Number($("#range7").val());// 团队协作
+      var num8 = Number($("#range8").val());// 组织匹配性（文化）
+      $(this).siblings(':last-child').text(index);
+      if (Number(index) <= 4 && Number(index) >= 0) {
+        $(this).siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 7 && Number(index) >= 5) {
+        $(this).siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 9 && Number(index) >= 8) {
+        $(this).siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $(this).siblings(':nth-last-child(2)').text('卓越');
+      }
+      var numArr = [index, num2, num3, num4, num5, num6, num7, num1, num8];
+      var sum = numArr.reduce((x, y) => x + y)
+      $('#range10').val(sum);
+      $('#range10').siblings(':last-child').text(sum);
+      if (Number(sum) <= 59 && Number(sum) >= 0) {
+        $('#range10').siblings(':nth-last-child(2)').text('差');
+      } else if (Number(index) <= 75 && Number(index) >= 60) {
+        $('#range10').siblings(':nth-last-child(2)').text('一般');
+      } else if (Number(index) <= 76 && Number(index) >= 90) {
+        $('#range10').siblings(':nth-last-child(2)').text('良好');
+      } else {
+        $('#range10').siblings(':nth-last-child(2)').text('卓越');
+      }
+    });
+
+    $("#box").jSignature();//初始化画板，初始化之后就可以进行操作
+    //评价时间选择
+    $('#pingjiaTime').click(function () {
+      var dtPicker = new mui.DtPicker({
+        type: "date",
+      });
+      dtPicker.show(function (selectItems) {
+        $("#pingjiaTime").val(selectItems.value)
+      })
+    });
+    //面试时间选择
+    $('#msDate').click(function () {
+      var dtPicker = new mui.DtPicker({
+        type: "date",
+      });
+      dtPicker.show(function (selectItems) {
+        $("#msDate").val(selectItems.value)
+      })
+    });
+    //结论 输入框change事件
+    $("input[name='end']").change(function () {
+      console.log($(this).val());
+      $(this).parent().parent().parent().find(".deny").attr('disabled', 'disabled')
+      $(this).parent().siblings().children('input').removeAttr('disabled', 'disabled')
+      $(this).parent().parent().siblings('.last').find('input').val('')
+    })
+    $('#submit').click(function () {
+      console.log($("input[name='end']:checked").parent().siblings().find('.xwName').val());
+      console.log($("input[name='end']:checked").parent().siblings().find('.xwJob').val());
+      if ($("input[name='sex']:checked").val() == undefined) {
+        mui.toast('请选择候选人性别');
+        return;
+      } else if ($('#textarea').val() == '') {
+        mui.toast('请填写优势')
+        return;
+      } else if ($('#textarea2').val() == '') {
+        mui.toast('请填写不足')
+        return;
+      } else if ($('#textarea3').val() == '') {
+        mui.toast('请填写录用建议')
+        return;
+      } else if ($('#textarea2').val() == '') {
+        mui.toast('请填写不足')
+        return;
+      } else if ($('#msDate').val() == '') {
+        mui.toast('请填写面试时间')
+        return;
+      } else if ($("input[name='end']:checked").val() == undefined) {
+        mui.toast('请选择结论')
+        return;
+      } else {
+        submit()
+      }
+
+
+    })
+
+  })
+
+  //获取员工入职信息
+  function getInfo(interId, interName,idCard) {
+    var url = "http://58.56.128.101:8000/HRHIG/App_Interface/Intervieweval/selectYuangonginfo.ashx?shenfenzheng=" + idCard + '&interId=' + interId +
+      "&interName=" + interName;
+    // var url = "http://10.135.108.141:8000/HRHIG/App_Interface/Intervieweval/Intervieweval_add.ashx?shenfenzheng=14043019901111003X";
+    $.ajax({
+      url: url,
+      type: 'GET',
+      success: function (data) {
+        let json = JSON.parse(data)[0]
+        if (JSON.stringify(json) != undefined) {
+          id = json.id;
+          $("input[name='sex'][value='" + json.sex + "']").attr('checked', 'true');
+          $('#name').val(json.username);
+          $('#xueli').val(json.cXueLi);
+          $('#zhuanye').val(json.cZhuanYe);
+          $('#gangwei').val(json.cstation);
+          $('#msDate').val(json.drzdate);
+        }
+
+      },
+      error: function (data) {
+        console.log(data);
+      }
+    })
+  };
+
+  //查询评价信息
+  function PJinfo(interId) {
+    var url = "http://58.56.128.101:8000/HRHIG/App_Interface/Intervieweval/selectIntervieweval.ashx?id="+interId;
+    // var url = "http://10.135.108.141:8000/HRHIG/App_Interface/Intervieweval/Intervieweval_add.ashx?shenfenzheng=14043019901111003X";
+    $.ajax({
+      url: url,
+      type: 'GET',
+      success: function (data) {
+        let json = JSON.parse(data)[0]
+        // if (JSON.stringify(json) != undefined) {
+        //   id = json.id;
+        //   $("input[name='sex'][value='" + json.sex + "']").attr('checked', 'true')
+        //   $('#name').val(json.username);
+        //   $('#xueli').val(json.cXueLi);
+        //   $('#zhuanye').val(json.cZhuanYe);
+        //   $('#gangwei').val(json.cstation);
+        // $('#msDate').val(json.Interviewdate);
+        // }
+        $('#range1').val(json.yipaodaodi);
+        $('#range2').val(json.jiqing);
+        $('#rang3').val(json.ziwotiaozhan);
+        $('#rang4').val(json.kaifangxuexi);
+        $('#rang5').val(json.zhuanyejn);
+        $('#rang6').val(json.chuangxinyh);
+        $('#rang7').val(json.tuanduixz);
+        $('#rang8').val(json.ziyuanzhenghe);
+        $('#rang9').val(json.zuzhippx);
+        $('#rang10').val(json.Hj);
+        $('#textarea').val(json.youshi);
+        $('#textarea2').val(json.buzu);
+        $('#textarea3').val(json.luyongjianyi);
+        $("input[name='end'][value='" + json.type + "']").attr('checked', 'true');
+        $("input[name='end']:checked").parent().siblings().children('input').removeAttr('disabled', 'disabled')
+
+      },
+      error: function (data) {
+        console.log(data);
+      }
+    })
+  }
+
+  function submit() {
+    // 1.录用，2.保留,3.转介，4.不录用
+    // var datas = {
+    //   id: '0',
+    //   Interviewuserid: id,
+    //   Interviewdate: $('#msDate').val(),
+    //   yipaodaodi: $('#range1').val(),
+    //   jiqing: $('#range2').val(),
+    //   ziwotiaozhan: $('#range3').val(),
+    //   kaifangxuexi: $('#range4').val(),
+    //   zhuanyejn: $('#range5').val(),
+    //   chuangxinyh: $('#range6').val(),
+    //   tuanduixz: $('#range7').val(),
+    //   ziyuanzhenghe: $('#range8').val(),
+    //   zuzhippx: $('#range9').val(),
+    //   Hj: $('#range10').val(),
+    //   youshi: $('#textarea').val(),
+    //   buzu: $('#textarea2').val(),
+    //   luyongjianyi: $('#textarea3').val(),
+    //   interviewer: '',
+    //   interviewerid: '',
+    //   type: $("input[name='end']:checked").val(),
+    //   SmallmicroName: $(".xwName").val(),
+    //   SmallmicroStation: $(".xwJob").val(),
+    //   Referraldirection: $("#zj").val(),
+    //   AgententryName: '',
+    //   Agententryid: '',
+    //   itijiao: '0',
+    // }
+
+    $.ajax({
+      type: 'get',
+      url: "http://58.56.128.101:8000/HRHIG/App_Interface/Intervieweval/Intervieweval_add.ashx?Interviewuserid=" + id +
+        "&id=" + 0 +
+        "&Interviewdate=" + $('#msDate').val() +
+        "&yipaodaodi=" + $('#range1').val() +
+        "&jiqing=" + $('#range2').val() +
+        "&ziwotiaozhan=" + $('#range3').val() +
+        "&kaifangxuexi=" + $('#range4').val() +
+        "&zhuanyejn=" + $('#range5').val() +
+        "&chuangxinyh=" + $('#range6').val() +
+        "&tuanduixz=" + $('#range7').val() +
+        "&ziyuanzhenghe=" + $('#range8').val() +
+        "&zuzhippx=" + $('#range9').val() +
+        "&Hj=" + $('#range10').val() +
+        "&youshi=" + $('#textarea').val() +
+        "&buzu=" + $('#textarea2').val() +
+        "&luyongjianyi=" + $('#textarea3').val() +
+        "&interviewer=" + '' +
+        "&interviewerid=" +interId +
+        "&type=" + $("input[name='end']:checked").val() +
+        "&SmallmicroName=" + $("input[name='end']:checked").parent().siblings().find('.xwName').val() +
+        "&SmallmicroStation=" + $("input[name='end']:checked").parent().siblings().find('.xwJob').val() +
+        "&Referraldirection=" + $("#zj").val() +
+        "&AgententryName=" + '' +
+        "&Agententryid=" + '' +
+        "&itijiao=" + 0,
+      dataType: 'text',
+      success: function (data) {
+        console.log(data);
+        ids=data;
+        PJinfo(ids)
+      },
+      error: function (data) {
+        console.log(data);
+      }
+    })
+  }
+
+  function upload() {
+    // 1.录用，2.保留,3.转介，4.不录用
+    let fd = new FormData()
+
+    var da=$("#image").attr("src")
+    console.log(da.replace(/data:image\/png;base64,/, ""));
+    fd.append('datas',da.replace(/data:image\/png;base64,/, ""));
+    fd.append('interviwerid', interId);
+    fd.append('interviwerName', interName);
+    fd.append('userid',interId );
+    $.ajax({
+      type: 'post',
+      url: "http://58.56.128.101:8000/HRHIG/App_Interface/Intervieweval/InterviewerFile.ashx",
+      data: fd,
+      processData: false,
+      contentType: false,
+      async: false,
+      success: function (data) {
+        mui.toast('签名上传成功')
+      },
+      error: function (data) {
+        mui.toast('签名上传失败')
+      }
+    })
+  }
+
+  //点击事件为获取base64数据，生成图片
+  document.getElementsByTagName("span")[0].onclick = function () {
+    //getData:获取数据
+    //reset：复位/重置
+    // 获取签名的“base64”数据对
+    var datapair = $("#box").jSignature("getData", "image");
+    $("#image").attr('src', 'data:' + datapair[0] + "," + datapair[1]);
+    upload()
+  }
+  //生成图片之后我们就可以进行相应的操作
+
+
+  //点击事件为重置画板
+  document.getElementsByTagName("span")[1].onclick = function () {
+    $("#box").jSignature("reset");
+    $("#image").attr('src', '');
+    mui.toast('已重置签名图片')
+  }
+</script>
+</body>
+
+</html>
